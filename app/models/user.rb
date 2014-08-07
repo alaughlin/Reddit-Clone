@@ -5,6 +5,16 @@ class User < ActiveRecord::Base
 
   after_initialize :ensure_session_token
 
+  has_many :sub_mods
+
+  has_many(
+    :modded_subs,
+    through: :sub_mods,
+    source: :sub
+  )
+
+  has_many :posts
+
   attr_reader :password
 
   def self.generate_session_token

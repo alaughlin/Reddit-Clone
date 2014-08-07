@@ -1,4 +1,4 @@
-class SubMods < ActiveRecord::Base
+class SubMod < ActiveRecord::Base
   validates :user_id, :sub_id, presence: true
   validates :user_id, uniqueness: { scope: :sub_id }
 

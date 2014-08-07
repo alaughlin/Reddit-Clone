@@ -1,0 +1,21 @@
+<h3>Create Sub</h3>
+
+<form action="<%= subs_url %>" method="post">
+
+  <%= auth_token %>
+
+  <label>Title <br>
+    <input type="text" name="sub[title]" value="<%= @sub.title %>">
+  </label>
+
+  <br>
+
+  <label>Description <br>
+    <textarea name="sub[description]"><%= @sub.description %></textarea>
+  </label>
+
+  <br>
+
+  <button>Create Sub</button>
+
+</form>

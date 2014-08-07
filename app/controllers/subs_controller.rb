@@ -1,5 +1,5 @@
 class SubsController < ApplicationController
-
+  before_action :ensure_signed_in, except: [:index, :show]
   before_action :check_if_moderator, only: [:edit, :update, :destroy]
 
   def new
@@ -7,7 +7,7 @@ class SubsController < ApplicationController
   end
 
   def create
-    @sub = Sub.new(sub_params)
+    @sub = current_user.modded_subs.new(sub_params)
     if @sub.save
       redirect_to sub_url(@sub)
     else
@@ -41,7 +41,7 @@ class SubsController < ApplicationController
 
   def show
     @sub = Sub.find(params[:id])
-    @posts = @sub.posts
+    @posts = @sub.posts.order(created_at: :desc)
   end
 
   private

@@ -1,0 +1,6 @@
+<h2><%= @sub.title %></h2>
+<% @posts.each_with_index do |post, i| %>
+  <h3><%= i + 1 %>. <a href="<%= post_url(post) %>"><%= post.title %></a></h3>
+<% end %>
+<br>
+<a href="<%= new_sub_post_url(@sub) %>">Create New Post</a>

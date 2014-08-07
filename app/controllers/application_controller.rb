@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
 
   def sign_in!(user)
     session[:session_token] = user.session_token
-    redirect_to user_url(@user)
+    redirect_to subs_url
   end
 
   def current_user
@@ -16,5 +16,9 @@ class ApplicationController < ActionController::Base
 
   def signed_in?
     !!current_user
+  end
+
+  def ensure_signed_in
+    redirect_to new_session_url unless signed_in?
   end
 end

@@ -1,0 +1,10 @@
+<h2><%= @post.title %></h2>
+
+<p><%= @post.content %></p>
+
+<!-- <%# @comments.each_with_index do |comment, i| %>
+  <%#=  i + 1 %>. <%#= comment.user.username %>
+  <p><%#= comment.content %></p><br><br>
+<%# end %>
+<br> -->
+<a href="<%= sub_url(@post.sub) %>">Back to <%= @post.sub.title %></a>
