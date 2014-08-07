@@ -1,11 +1,23 @@
 <h2><%= @post.title %></h2>
 
 <p><%= @post.content %></p>
+<a href="<%= new_post_comment_url(@post) %>">Add Comment</a>
+<br><br>
 
-<!-- <%# @comments.each_with_index do |comment, i| %>
-  <%#=  i + 1 %>. <%#= comment.user.username %>
-  <p><%#= comment.content %></p><br><br>
-<%# end %>
-<br> -->
+<h3>Comments:</h3>
+
+<ol>
+  <% @all_comments[nil].each do |comment| %>
+    <% next if comment.parent_comment_id %>
+      <li style="list-style-type: none;">
+         <%= render comment, comments: @all_comments %>
+      </li>
+  <% end %>
+</ol>
+
+Posted in:
+<% @subs.each do |sub| %>
+  <a href="<%= sub_url(sub) %>"><%= sub.title %></a>
+<% end %>
+<br>
 <a href="<%= edit_post_url(@post) %>">Edit Post</a>
-<a href="<%= sub_url(@sub) %>">Back to <%= @sub.title %></a>

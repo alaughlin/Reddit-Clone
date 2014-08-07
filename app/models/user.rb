@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
     source: :sub
   )
 
+  has_many :comments
+
   has_many :posts
 
   attr_reader :password

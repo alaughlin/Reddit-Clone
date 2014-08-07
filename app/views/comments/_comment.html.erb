@@ -1,0 +1,17 @@
+User: <%= comment.author.username %>
+<p><%= comment.content %></p>
+<a href="<%= new_post_comment_url(@post) %>?parent_comment_id=<%= comment.id %>">Add Comment</a><br><br><br>
+
+<ul>
+  <% if comments[comment.id] %>
+    <% comments[comment.id].each do |child| %>
+        <li style="list-style-type: none;">
+          <%= render partial: "comments/comment",
+                     locals: {
+                               comment: child,
+                               comments: comments
+                              }%>
+        </li>
+    <% end %>
+  <% end %>
+</ul>

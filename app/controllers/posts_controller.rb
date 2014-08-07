@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post.sub_ids = post_params[:sub_ids]
 
     if @post.save
-      redirect_to full_show_url(@post)
+      redirect_to posts_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :new
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
 
     if @post.update(post_params)
-      redirect_to full_show_url(@post)
+      redirect_to post_url(@post)
     else
       flash[:errors] = @post.errors.full_messages
       render :edit
@@ -40,15 +40,9 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @sub = Sub.find(params[:sub_id])
-    #@comments = @post.comments
-  end
-
-  def full_show
-    @post = Post.find(params[:id])
     @subs = @post.subs
-    #@comments = @post.comments
-    render :index
+    #@top_level_comments = @post.top_level_comments
+    @all_comments = @post.comments_by_parent_id
   end
 
   private
